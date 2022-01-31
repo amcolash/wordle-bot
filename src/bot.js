@@ -63,6 +63,12 @@ function main(stats, answer) {
   if (!answer) answer = wordlist[randomNumber];
   if (debug) console.log(`Answer is ${answer}\n`);
 
+  if (answer.length !== 5) {
+    console.error('Wrong length word!', answer.length);
+    return;
+  }
+
+  const progress = [];
   const known = {};
   const incorrect = new Set();
   const guessed = new Set();
@@ -83,9 +89,10 @@ function main(stats, answer) {
     if (guess === answer) {
       possible = [answer];
       correct = true;
+      progress.push({ guess: answer, results: '🟩🟩🟩🟩🟩' });
       if (debug) console.log('Got correct answer!');
     } else {
-      checkWord(guess, answer, known, incorrect);
+      checkWord(guess, answer, known, incorrect, progress);
 
       if (debug) console.log('Known', known, '\nIncorrect', Array.from(incorrect), '\n');
 
@@ -105,7 +112,7 @@ function main(stats, answer) {
     else console.log(`Did not find solution for: ${answer}`);
   }
 
-  return { correct, guesses, answer };
+  return { correct, guesses, answer, progress };
 }
 
 function findPossible(known, incorrect, duplicateLetters, guessed, stats) {
@@ -156,14 +163,25 @@ function findPossible(known, incorrect, duplicateLetters, guessed, stats) {
   return matches;
 }
 
-function checkWord(guess, answer, known, incorrect) {
+function checkWord(guess, answer, known, incorrect, progress) {
+  let results = '';
+
   guess.split('').forEach((l, i) => {
     if (l === answer[i]) {
       if (known[l] && known[l] !== -1) known[l].add(i);
       else known[l] = new Set([i]);
-    } else if (answer.indexOf(l) !== -1) known[l] = -1;
-    else incorrect.add(l);
+
+      results += '🟩';
+    } else if (answer.indexOf(l) !== -1) {
+      known[l] = -1;
+      results += '🟨';
+    } else {
+      incorrect.add(l);
+      results += '⬛';
+    }
   });
+
+  progress.push({ guess, results });
 }
 
 function tests() {
