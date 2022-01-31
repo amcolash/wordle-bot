@@ -14,7 +14,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "wordle-bot --debug"
+    "daily": "wordle-bot --debug"
   },
   "repository": {
     "type": "git",
