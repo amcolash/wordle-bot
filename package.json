@@ -3,14 +3,18 @@
   "version": "1.0.0",
   "description": "A wordle bot - let's see how smart it can be",
   "main": "src/bot.js",
+  "bin": {
+    "wordle-bot": "src/cli.js"
+  },
   "dependencies": {
     "node-fetch": "^3.2.0",
     "progress-stream": "^2.0.0",
-    "stream-json": "^1.7.3"
+    "stream-json": "^1.7.3",
+    "yargs": "^17.3.1"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "wordle-bot --debug"
   },
   "repository": {
     "type": "git",

@@ -7,8 +7,11 @@ const words = JSON.parse(readFileSync(join(__dirname, '../data/words.json')).toS
 const bookStats = JSON.parse(readFileSync(join(__dirname, '../data/stats.json')).toString());
 const yelpStats = JSON.parse(readFileSync(join(__dirname, '../data/stats_yelp.json')).toString());
 
-const debug = false;
-const singleWord = false;
+let debug = false;
+
+function setDebug(debugMode) {
+  debug = debugMode;
+}
 
 function generateStats() {
   const mapping = {};
@@ -56,9 +59,8 @@ function generateStats() {
 function main(stats, answer) {
   // Choose random word from dictionary
   const wordlist = words.answers;
-  if (!answer) answer = wordlist[Math.floor(Math.random() * wordlist.length)];
-  // if (!answer && singleWord) answer = 'could';
-
+  const randomNumber = Math.floor(Math.random() * wordlist.length);
+  if (!answer) answer = wordlist[randomNumber];
   if (debug) console.log(`Answer is ${answer}\n`);
 
   const known = {};
@@ -199,14 +201,4 @@ function printTestResults(results) {
   );
 }
 
-if (process.argv.length > 2) {
-  const stats = generateStats();
-  console.log(main(stats, process.argv[2]));
-} else {
-  if (singleWord) {
-    const stats = generateStats();
-    console.log(main(stats, 'sugar'));
-  } else {
-    tests();
-  }
-}
+module.exports = { generateStats, main, setDebug, tests };
