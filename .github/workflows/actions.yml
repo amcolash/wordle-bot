@@ -9,8 +9,12 @@ jobs:
     name: 'Daily Wordle Bot'
     steps:
       - uses: actions/checkout@v2
+        name: Checkout code
       - uses: actions/setup-node@v2
+        name: Setup node 14
         with:
           node-version: '14'
       - run: npm install
+        name: Install dependencies
       - run: npm run daily
+        name: Solve wordle
