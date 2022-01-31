@@ -89,7 +89,7 @@ function main(stats, answer) {
     if (guess === answer) {
       possible = [answer];
       correct = true;
-      progress.push({ guess: answer, results: '🟩🟩🟩🟩🟩' });
+      progress.push({ guess: answer, results: '🟩 🟩 🟩 🟩 🟩' });
       if (debug) console.log('Got correct answer!');
     } else {
       checkWord(guess, answer, known, incorrect, progress);
@@ -171,13 +171,13 @@ function checkWord(guess, answer, known, incorrect, progress) {
       if (known[l] && known[l] !== -1) known[l].add(i);
       else known[l] = new Set([i]);
 
-      results += '🟩';
+      results += '🟩 ';
     } else if (answer.indexOf(l) !== -1) {
       known[l] = -1;
-      results += '🟨';
+      results += '🟨 ';
     } else {
       incorrect.add(l);
-      results += '⬛';
+      results += '⬛ ';
     }
   });
 
