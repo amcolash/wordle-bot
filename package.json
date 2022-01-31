@@ -1,0 +1,25 @@
+{
+  "name": "wordle-bot",
+  "version": "1.0.0",
+  "description": "A wordle bot - let's see how smart it can be",
+  "main": "src/bot.js",
+  "dependencies": {
+    "node-fetch": "^3.2.0",
+    "progress-stream": "^2.0.0",
+    "stream-json": "^1.7.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amcolash/wordle-bot.git"
+  },
+  "author": "Andrew McOlash",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/amcolash/wordle-bot/issues"
+  },
+  "homepage": "https://github.com/amcolash/wordle-bot#readme"
+}
