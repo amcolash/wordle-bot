@@ -14,7 +14,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "daily": "wordle-bot --debug"
+    "daily": "node src/cli.js --debug"
   },
   "repository": {
     "type": "git",
