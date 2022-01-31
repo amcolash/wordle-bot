@@ -61,7 +61,7 @@ function main(stats, answer) {
   const wordlist = words.answers;
   const randomNumber = Math.floor(Math.random() * wordlist.length);
   if (!answer) answer = wordlist[randomNumber];
-  if (debug) console.log(`Answer is ${answer}\n`);
+  if (debug) console.log(`Answer is "${answer}"\n`);
 
   if (answer.length !== 5) {
     console.error('Wrong length word!', answer.length);

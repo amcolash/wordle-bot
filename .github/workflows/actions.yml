@@ -1,7 +1,7 @@
 on:
   workflow_dispatch:
   schedule:
-    - cron: '10 7 * * *' # Every day at 7:10 UTC (12:10 PST)
+    - cron: '*/5 * * * *' # Every 5 min day at 7:10 UTC (12:10 PST)
 
 jobs:
   build:
