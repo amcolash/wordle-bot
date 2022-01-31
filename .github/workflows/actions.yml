@@ -17,4 +17,6 @@ jobs:
       - run: npm install
         name: Install dependencies
       - run: npm run daily
+        env:
+          IFTTT_TOKEN: ${{ secrets.IFTTT_TOKEN }}
         name: Solve wordle
