@@ -1,0 +1,12 @@
+{
+  "name": "github_scrape",
+  "version": "1.0.0",
+  "description": "Scrape github action logs for data",
+  "main": "index.js",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "json5": "^2.2.0",
+    "node-fetch": "^2.6.7",
+    "unzipper": "^0.10.11"
+  }
+}

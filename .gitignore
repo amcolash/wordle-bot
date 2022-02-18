@@ -106,3 +106,4 @@ dist
 # Exclude data files
 yelp/
 gutenburg/
+github_scrape/data
