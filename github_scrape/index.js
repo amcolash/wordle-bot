@@ -138,8 +138,11 @@ async function getData() {
                 }
               });
 
+              const runNumber = Number.parseInt(f.replace('logs_', '').replace('.zip', ''));
+              const timestamp = allData.find((r) => r.run_number === runNumber).created_at;
+
               const foundJson = rows.slice(startJson, endJson).join('\n').trim();
-              const data = { ...json5.parse(foundJson), id: wordleNumber, possibilities };
+              const data = { ...json5.parse(foundJson), wordleNumber, possibilities, runNumber, timestamp };
 
               output.push(data);
             } else {
