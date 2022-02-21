@@ -22,7 +22,7 @@ jobs:
       - name: Retrieve firebase secret and decode it to a file
         env:
           FIREBASE_AUTH: ${{ secrets.FIREBASE_AUTH }}
-        run: echo $FIREBASE_AUTH | base64 --decode > src/firebase-admin.json
+        run: echo "$FIREBASE_AUTH" | base64 --decode > src/firebase-admin.json
 
       - name: Solve wordle
         env:
