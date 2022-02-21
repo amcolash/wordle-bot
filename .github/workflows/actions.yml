@@ -8,15 +8,23 @@ jobs:
     runs-on: ubuntu-latest
     name: 'Daily Wordle Bot'
     steps:
-      - uses: actions/checkout@v2
-        name: Checkout code
-      - uses: actions/setup-node@v2
-        name: Setup node 14
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup node 14
+        uses: actions/setup-node@v2
         with:
           node-version: '14'
-      - run: npm install
-        name: Install dependencies
-      - run: npm run daily
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Retrieve firebase secret and decode it to a file
+        env:
+          FIREBASE_AUTH: ${{ secrets.FIREBASE_AUTH }}
+        run: echo $FIREBASE_AUTH | base64 --decode > src/firebase-admin.json
+
+      - name: Solve wordle
         env:
           IFTTT_TOKEN: ${{ secrets.IFTTT_TOKEN }}
-        name: Solve wordle
+        run: npm run daily

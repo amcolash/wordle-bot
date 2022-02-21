@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const { readFileSync } = require('fs');
+const { readFileSync, existsSync } = require('fs');
 const { join } = require('path');
 const fetch = require('node-fetch');
 
@@ -46,7 +46,9 @@ if (testMode) {
   tests();
 } else {
   const results = main(stats, word);
-  console.log(results);
+
+  const { possibilities, ...filtered } = results;
+  console.log(filtered);
 
   const key = process.env.IFTTT_TOKEN;
   if (key) {
@@ -67,5 +69,30 @@ if (testMode) {
       .then((res) => res.text())
       .then((data) => console.log(data))
       .catch((err) => console.error(err));
+  }
+
+  const firebaseAuth = join(__dirname, 'firebase-admin.json');
+  if (existsSync(firebaseAuth)) {
+    console.log('\nSending results to firebase');
+
+    const firebaseAdmin = require('firebase-admin');
+    const serviceAccount = require(firebaseAuth);
+
+    const app = firebaseAdmin.initializeApp({
+      credential: firebaseAdmin.credential.cert(serviceAccount),
+      databaseURL: 'https://wordle-bot-4b4e3-default-rtdb.firebaseio.com',
+    });
+
+    const attempts = app.database().ref('/attempts');
+    attempts
+      .push({ ...results, runNumber: process.env.GITHUB_RUN_NUMBER || -1, timestamp: new Date().toISOString(), wordleNumber: wordIndex })
+      .catch((err) => console.error(err))
+
+      // Clean up DB and close app (so that everything stops on completion)
+      .then(() => {
+        console.log('Success');
+        return app.database().goOffline();
+      })
+      .then(() => app.delete());
   }
 }

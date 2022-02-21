@@ -69,6 +69,7 @@ function main(stats, answer) {
   }
 
   const progress = [];
+  const possibilities = [];
   const known = {};
   const incorrect = new Set();
   const guessed = new Set();
@@ -80,8 +81,11 @@ function main(stats, answer) {
 
   while (possible.length > 0 && guesses < 6 && !correct) {
     guesses++;
-    if (debug)
-      console.log(`${guesses}: All possible (${possible.length}):`, possible.map((p) => `${p}: ${stats.scores[p]}`).slice(0, 10), '\n');
+
+    const currentPossible = possible.map((p) => `${p}: ${stats.scores[p]}`).slice(0, 10);
+    possibilities.push(currentPossible);
+
+    if (debug) console.log(`${guesses}: All possible (${possible.length}):`, currentPossible, '\n');
 
     const guess = possible[0];
     if (debug) console.log(`Checking word "${guess}"`);
@@ -112,7 +116,7 @@ function main(stats, answer) {
     else console.log(`Did not find solution for: ${answer}`);
   }
 
-  return { correct, guesses, answer, progress };
+  return { correct, guesses, answer, progress, possibilities };
 }
 
 function findPossible(known, incorrect, duplicateLetters, guessed, stats) {

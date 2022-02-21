@@ -107,3 +107,5 @@ dist
 yelp/
 gutenburg/
 github_scrape/data
+
+firebase-admin.json*

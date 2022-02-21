@@ -90,7 +90,7 @@ async function getData() {
           .on('entry', async (entry) => {
             const fileName = entry.path;
 
-            if (fileName === 'Daily Wordle Bot/5_Solve wordle.txt') {
+            if (fileName.indexOf('Solve wordle.txt') !== -1) {
               const contents = (await entry.buffer()).toString();
               const rows = contents
                 .trim()
