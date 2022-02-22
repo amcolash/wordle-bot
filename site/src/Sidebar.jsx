@@ -7,7 +7,7 @@ export function Sidebar(props) {
   console.log(items);
 
   return (
-    <div style={{ marginRight: 16 }}>
+    <div style={{ marginRight: '1em' }}>
       {items.map((item) => (
         <Item key={item.runNumber} item={item} selected={item.timestamp === selected.timestamp} setSelected={setSelected} />
       ))}
