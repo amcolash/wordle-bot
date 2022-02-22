@@ -10,19 +10,19 @@ export function Item(props) {
   return (
     <div
       style={{
-        margin: '0.5em',
-        padding: '0.5em',
+        margin: '0.5rem',
+        padding: '0.5rem',
         border: '2px solid transparent',
-        borderColor: selected ? 'teal' : 'transparent',
-        borderRadius: '0.3em',
+        borderColor: selected ? 'var(--blue)' : 'transparent',
+        borderRadius: '0.3rem',
         cursor: 'pointer',
         whiteSpace: 'nowrap',
         display: 'flex',
       }}
       onClick={() => setSelected(item)}
     >
-      {item.correct ? <FiCheckCircle color="green" /> : <FiXCircle color="red" />}
-      <div style={{ display: 'flex', flexDirection: 'column', margin: '0 0.5em' }}>
+      {item.correct ? <FiCheckCircle color="var(--green)" /> : <FiXCircle color="var(--orange)" />}
+      <div style={{ display: 'flex', flexDirection: 'column', margin: '0 0.5rem' }}>
         <span>Wordle {item.wordleNumber}</span>
         <span>
           {monthNames[date.getMonth()]}, {date.getDate()}
