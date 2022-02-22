@@ -4,8 +4,6 @@ import { Item } from './Item';
 export function Sidebar(props) {
   const { items, selected, setSelected } = props;
 
-  console.log(items);
-
   return (
     <div style={{ marginRight: '1em' }}>
       {items.map((item) => (
