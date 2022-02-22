@@ -54,7 +54,7 @@ async function getData() {
 
   const toDownload = allData.filter((run) => {
     const fileName = join(dataDir, `/logs_${run.run_number}.zip`);
-    return run.run_number > 6 && !existsSync(fileName);
+    return run.run_number > 6 && run.conclusion === 'success' && !existsSync(fileName);
   });
 
   console.log(`Going to download ${toDownload.length} files`);
