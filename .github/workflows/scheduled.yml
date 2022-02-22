@@ -3,7 +3,7 @@ name: Scheduled Bot Run
 on:
   workflow_dispatch:
   schedule:
-    - cron: '5 8 * * *' # Run at 8:05 UTC (12:05 PST) - Might be delayed a while, but hopefully reliable enough
+    - cron: '1 8 * * *' # Run at 8:01 UTC (12:01 PST) - Might be delayed a while, but hopefully reliable enough
 
 jobs:
   build:
