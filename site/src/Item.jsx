@@ -23,12 +23,13 @@ export function Item(props) {
     >
       {item.correct ? <FiCheckCircle color="var(--green)" /> : <FiXCircle color="var(--orange)" />}
       <div style={{ display: 'flex', flexDirection: 'column', margin: '0 0.5rem' }}>
-        <span>Wordle {item.wordleNumber}</span>
+        <span>
+          #{item.wordleNumber} ({item.guesses}/6)
+        </span>
         <span>
           {monthNames[date.getMonth()]}, {date.getDate()}
         </span>
       </div>
-      <span>({item.guesses}/6)</span>
     </div>
   );
 }

@@ -5,7 +5,7 @@ export function Sidebar(props) {
   const { items, selected, setSelected } = props;
 
   return (
-    <div style={{ marginRight: '1rem', overflow: 'auto' }}>
+    <div style={{ overflow: 'auto', flexShrink: 0 }}>
       {items.map((item) => (
         <Item key={item.runNumber} item={item} selected={item.timestamp === selected.timestamp} setSelected={setSelected} />
       ))}

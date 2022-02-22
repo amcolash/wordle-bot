@@ -15,8 +15,8 @@ export function Content(props) {
   console.log(progress);
 
   return (
-    <div>
-      <h1>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
+      <h1 style={{ textAlign: 'center' }}>
         Wordle {selected.wordleNumber}
         {!props.hidden && <span style={{ textTransform: 'capitalize' }}>: {selected.answer}</span>}
       </h1>
@@ -31,7 +31,7 @@ export function Content(props) {
   );
 }
 
-const size = '3.5rem';
+const size = '8.5vw';
 function letter(props) {
   let background;
   if (props.result === '⬛') background = 'var(--color-tone-4)';
@@ -43,15 +43,16 @@ function letter(props) {
       key={props.i}
       style={{
         fontSize: '1.25rem',
+        fontWeight: 'bold',
         textTransform: 'capitalize',
-        width: size,
-        height: size,
+        width: `min(${size}, 4rem)`,
+        height: `min(${size}, 4rem)`,
         outline: props.result === ' ' && '3px solid var(--color-tone-4)',
         outlineOffset: '-3px',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        margin: '0.25rem',
+        margin: `calc(min(${size}, 4rem) / 10)`,
         background,
         color: 'var(--color-tone-1)',
       }}

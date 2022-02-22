@@ -23,14 +23,14 @@ export const AttemptList = () => {
   return (
     <div style={{ height: '100vh', width: '100vw', overflow: 'hidden' }}>
       {error && <strong>Error: {error}</strong>}
-      {loading && <span>List: Loading...</span>}
+      {loading && <span>Loading Data...</span>}
       {!loading && snapshots && (
         <div style={{ display: 'flex', height: '100%' }}>
           <Sidebar items={filterAndSort(snapshots)} selected={selected || {}} setSelected={setSelected} />
           {selected && <Content selected={selected} hidden={hidden} />}
         </div>
       )}
-      <IconButton onClick={() => setHidden(!hidden)} style={{ position: 'fixed', top: '0.5rem', right: '0.5rem' }}>
+      <IconButton onClick={() => setHidden(!hidden)} style={{ position: 'fixed', bottom: '0.5rem', right: '0.5rem' }}>
         {hidden ? <FiEyeOff /> : <FiEye />}
       </IconButton>
     </div>
