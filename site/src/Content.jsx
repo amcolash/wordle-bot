@@ -1,12 +1,18 @@
 import React from 'react';
 
+// TODO: Show / hide answers + letters
+// TODO: Nicer styling of the letters
+// TODO: More info in content
+// TODO: Mobile friendly
+// TODO: Dark Mode
+
 export function Content(props) {
   const { selected } = props;
 
   return (
     <div>
       <h1>
-        Wordle {selected.wordleNumber}: <span>{selected.answer}</span>
+        Wordle {selected.wordleNumber}: <span style={{ textTransform: 'capitalize' }}>{selected.answer}</span>
       </h1>
       {/* {JSON.stringify(selected)} */}
       {selected.progress.map((p) => {
@@ -34,6 +40,7 @@ function letter(props) {
       key={props.i}
       style={{
         fontSize: '1.25em',
+        textTransform: 'capitalize',
         width: size,
         height: size,
         border: '3px solid #333',
