@@ -23,3 +23,17 @@ body {
   background: var(--color-tone-7);
   color: var(--color-tone-1);
 }
+
+progress {
+  appearance: none;
+}
+
+progress::-webkit-progress-bar {
+  border-radius: 0.25rem;
+  background: var(--color-tone-4);
+}
+
+progress::-webkit-progress-value {
+  border-radius: 0.25rem;
+  background: var(--green);
+}

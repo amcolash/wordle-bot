@@ -10,7 +10,7 @@ export function Item(props) {
   return (
     <div
       style={{
-        margin: '0.5rem',
+        margin: '0.5rem 0.75rem',
         padding: '0.5rem',
         border: '2px solid transparent',
         borderColor: selected ? 'var(--blue)' : 'transparent',

@@ -33,7 +33,7 @@ export function Content(props) {
           <div
             style={{ display: 'flex', outline: i === selectedProgress && !hidden && '3px solid var(--blue)', outlineOffset: '-3px' }}
             onClick={(e) => {
-              if (p.guess !== '     ') {
+              if (p.guess !== '     ' && !hidden) {
                 e.stopPropagation();
                 setSelectedProgress(i);
               }
@@ -44,7 +44,7 @@ export function Content(props) {
         );
       })}
 
-      {selectedProgress !== undefined && selected.possibilities[selectedProgress] && (
+      {!hidden && selectedProgress !== undefined && selected.possibilities[selectedProgress] && (
         <Possibilities possibilities={selected.possibilities[selectedProgress]} />
       )}
     </div>
@@ -99,16 +99,16 @@ function Possibilities(props) {
   });
 
   return (
-    <div>
-      <h3>Possibilities:</h3>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <h3 style={{ textAlign: 'center' }}>Possibilities:</h3>
       {parsed.map((p) => {
         return (
-          <div key={p.word} style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+          <div key={p.word} style={{ display: 'flex', justifyContent: 'space-between', width: '100%', margin: '0.35rem' }}>
             <div style={{ marginRight: '0.75rem' }}>
               <strong>{p.word}</strong>
               {/* <span>: {p.score.toFixed(5)}</span> */}
             </div>
-            <progress min={min} max={max} value={min === max ? 999 : p.score} />
+            <progress min={min} max={max} value={min === max ? 999 : p.score} style={{ width: '6rem' }} />
           </div>
         );
       })}

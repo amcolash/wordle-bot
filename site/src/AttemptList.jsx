@@ -21,11 +21,21 @@ export const AttemptList = () => {
   }, [snapshots]);
 
   return (
-    <div style={{ height: '100vh', width: '100vw', overflow: 'hidden' }}>
-      {error && <strong>Error: {error}</strong>}
-      {loading && <span>Loading Data...</span>}
+    <div
+      style={{
+        height: '100vh',
+        width: '100vw',
+        overflow: 'hidden',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        alignContent: 'center',
+      }}
+    >
+      {error && <strong style={{ fontSize: '1.5rem' }}>Error: {error}</strong>}
+      {loading && <span style={{ fontSize: '1.5rem' }}>Loading Data...</span>}
       {!loading && snapshots && (
-        <div style={{ display: 'flex', height: '100%' }}>
+        <div style={{ display: 'flex', height: '100%', width: '100%' }}>
           <Sidebar items={filterAndSort(snapshots)} selected={selected || {}} setSelected={setSelected} />
           {selected && <Content selected={selected} hidden={hidden} />}
         </div>
