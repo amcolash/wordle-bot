@@ -31,7 +31,11 @@ export function Content(props) {
 
         return (
           <div
-            style={{ display: 'flex', outline: i === selectedProgress && !hidden && '3px solid var(--blue)', outlineOffset: '-3px' }}
+            style={{
+              display: 'flex',
+              border: `3px solid ${i === selectedProgress && !hidden ? 'var(--blue)' : 'transparent'}`,
+              borderRadius: 'var(--border-radius)',
+            }}
             onClick={(e) => {
               if (p.guess !== '     ' && !hidden) {
                 e.stopPropagation();

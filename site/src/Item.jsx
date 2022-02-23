@@ -14,7 +14,7 @@ export function Item(props) {
         padding: '0.5rem',
         border: '2px solid transparent',
         borderColor: selected ? 'var(--blue)' : 'transparent',
-        borderRadius: '0.3rem',
+        borderRadius: 'var(--border-radius)',
         cursor: 'pointer',
         whiteSpace: 'nowrap',
         display: 'flex',

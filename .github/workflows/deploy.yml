@@ -1,5 +1,10 @@
 name: Build and Deploy Pages
-on: [push]
+
+on:
+  push:
+    paths:
+      - 'site/**'
+
 jobs:
   build-and-deploy:
     concurrency: ci-${{ github.ref }} # Recommended if you intend to make multiple deployments in quick succession.

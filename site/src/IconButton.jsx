@@ -13,6 +13,7 @@ export function IconButton(props) {
         fontSize: '1.5rem',
         background: 'none',
         border: '2px solid var(--color-tone-4)',
+        borderRadius: 'var(--border-radius)',
         color: 'var(--color-tone-1)',
       }}
     />

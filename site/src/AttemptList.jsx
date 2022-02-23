@@ -18,6 +18,7 @@ export const AttemptList = () => {
   useEffect(() => {
     const items = filterAndSort(snapshots);
     if (!selected) setSelected(items[0]);
+    setHidden(true);
   }, [snapshots]);
 
   return (
