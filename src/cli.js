@@ -72,7 +72,7 @@ if (testMode) {
   }
 
   const firebaseAuth = join(__dirname, 'firebase-admin.json');
-  if (existsSync(firebaseAuth)) {
+  if (existsSync(firebaseAuth) && process.env.CI) {
     console.log('\nSending results to firebase');
 
     const firebaseAdmin = require('firebase-admin');

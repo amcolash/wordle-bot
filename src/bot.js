@@ -177,7 +177,9 @@ function checkWord(guess, answer, known, incorrect, progress) {
 
       results += '🟩';
     } else if (answer.indexOf(l) !== -1) {
-      known[l] = -1;
+      // Only update known if no set exists
+      if (known[l] === undefined) known[l] = -1;
+
       results += '🟨';
     } else {
       incorrect.add(l);
