@@ -1,0 +1,8 @@
+{
+  "name": "Wordle Bot",
+  "theme_color": "#538d4e",
+  "background_color": "#3a3a3c",
+  "display": "standalone",
+  "scope": "/wordle-bot/",
+  "start_url": "/wordle-bot/"
+}
