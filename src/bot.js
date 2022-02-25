@@ -233,8 +233,20 @@ function printTestResults(results) {
     }
   });
 
+  let dist = {};
+
+  results.forEach((r) => {
+    const g = r.correct ? r.guesses : 7;
+
+    dist[g] = dist[g] || 0;
+    dist[g]++;
+  });
+
   console.log(
-    `Solved: ${solved}/${results.length} (${((solved / results.length) * 100).toFixed(1)}%), Avg Guesses: ${(avg / solved).toFixed(2)}`
+    `Solved: ${solved}/${results.length} (${((solved / results.length) * 100).toFixed(1)}%), Avg Guesses: ${(avg / solved).toFixed(
+      2
+    )}, dist:`,
+    dist
   );
 }
 
