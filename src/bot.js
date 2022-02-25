@@ -71,7 +71,7 @@ function main(stats, answer) {
   const progress = [];
   const possibilities = [];
   const known = {};
-  const incorrect = new Set();
+  const incorrect = {};
   const guessed = new Set();
   let guesses = 0;
   let correct = false;
@@ -98,7 +98,7 @@ function main(stats, answer) {
     } else {
       checkWord(guess, answer, known, incorrect, progress);
 
-      if (debug) console.log('Known', known, '\nIncorrect', Array.from(incorrect), '\n');
+      if (debug) console.log('Known', known, '\nIncorrect', incorrect, '\n');
 
       guessed.add(guess);
 
@@ -107,7 +107,7 @@ function main(stats, answer) {
         if (v.size) fullyKnown += v.size;
       });
 
-      possible = findPossible(known, Array.from(incorrect), fullyKnown > 0 || guesses > 3, guessed, stats);
+      possible = findPossible(known, incorrect, fullyKnown > 0 || guesses > 3, guessed, stats);
     }
   }
 
@@ -137,8 +137,18 @@ function findPossible(known, incorrect, duplicateLetters, guessed, stats) {
 
     if (guessed.has(w)) valid = false;
 
-    incorrect.forEach((l) => {
-      if (w.indexOf(l) !== -1) valid = false;
+    Object.entries(incorrect).forEach((e) => {
+      const letter = e[0];
+      const values = e[1];
+
+      if (w.indexOf(letter) !== -1) {
+        if (values.length === 0) valid = false;
+        else {
+          values.forEach((v) => {
+            if (w[v] === letter) valid = false;
+          });
+        }
+      }
     });
 
     Object.entries(known).forEach((l) => {
@@ -180,9 +190,12 @@ function checkWord(guess, answer, known, incorrect, progress) {
       // Only update known if no set exists
       if (known[l] === undefined) known[l] = -1;
 
+      incorrect[l] = incorrect[l] || [];
+      incorrect[l].push(i);
+
       results += '🟨';
     } else {
-      incorrect.add(l);
+      incorrect[l] = [];
       results += '⬛';
     }
   });
