@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
+import { friendlyDate } from './util';
+
 // TODO: Show / hide answers + letters
 // TODO: Nicer styling of the letters
 // TODO: More info in content
@@ -20,10 +22,15 @@ export function Content(props) {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }} onClick={() => setSelectedProgress()}>
-      <h1 style={{ textAlign: 'center' }}>
+      <h1 style={{ textAlign: 'center', marginBottom: 0 }}>
         Wordle {selected.wordleNumber}
         {!props.hidden && <span style={{ textTransform: 'capitalize' }}>: {selected.answer}</span>}
       </h1>
+      <h2 style={{ marginTop: '0.25rem' }}>{friendlyDate(selected.timestamp)}</h2>
+
+      <h3 style={{ color: 'var(--orange)', marginTop: 0, marginBottom: '0.5rem', visibility: selected.correct && 'hidden' }}>
+        Failed {selected.comment}
+      </h3>
 
       {progress.map((p, i) => {
         const letters = p.guess.split('');
@@ -31,6 +38,7 @@ export function Content(props) {
 
         return (
           <div
+            key={i}
             style={{
               display: 'flex',
               border: `3px solid ${i === selectedProgress && !hidden ? 'var(--blue)' : 'transparent'}`,
@@ -64,7 +72,7 @@ function letter(props) {
 
   return (
     <div
-      key={props.i}
+      key={props.j}
       style={{
         fontSize: '1.25rem',
         fontWeight: 'bold',
@@ -79,6 +87,7 @@ function letter(props) {
         margin: `calc(min(${size}, 4rem) / 10)`,
         background,
         color: 'var(--color-tone-1)',
+        userSelect: 'none',
       }}
     >
       {props.hidden ? '' : props.letter}

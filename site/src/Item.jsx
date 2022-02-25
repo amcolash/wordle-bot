@@ -1,11 +1,10 @@
 import React from 'react';
 import { FiCheckCircle, FiXCircle } from 'react-icons/fi';
 
+import { friendlyDate } from './util';
+
 export function Item(props) {
   const { item, selected, setSelected } = props;
-
-  const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
-  const date = new Date(item.timestamp);
 
   return (
     <div
@@ -26,9 +25,7 @@ export function Item(props) {
         <span>
           #{item.wordleNumber} ({item.guesses}/6)
         </span>
-        <span>
-          {monthNames[date.getMonth()]}, {date.getDate()}
-        </span>
+        <span>{friendlyDate(item.timestamp)}</span>
       </div>
     </div>
   );
