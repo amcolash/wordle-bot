@@ -1,3 +1,4 @@
+const { bar } = require('ervy');
 const { readFileSync } = require('fs');
 const { join } = require('path');
 
@@ -220,10 +221,10 @@ function tests() {
     }
   });
 
-  printTestResults(results);
+  printTestResults(results, true);
 }
 
-function printTestResults(results) {
+function printTestResults(results, final) {
   let avg = 0;
   let solved = 0;
   results.forEach((r) => {
@@ -233,7 +234,7 @@ function printTestResults(results) {
     }
   });
 
-  let dist = {};
+  const dist = {};
 
   results.forEach((r) => {
     const g = r.correct ? r.guesses : 7;
@@ -245,9 +246,19 @@ function printTestResults(results) {
   console.log(
     `Solved: ${solved}/${results.length} (${((solved / results.length) * 100).toFixed(1)}%), Avg Guesses: ${(avg / solved).toFixed(
       2
-    )}, dist:`,
-    dist
+    )}\nDist: \``,
+    dist,
+    '`'
   );
+
+  if (final) {
+    const distData = Object.entries(dist).map((e) => {
+      return { key: e[0], value: e[1] };
+    });
+    const distGraph = bar(distData, { height: 7 });
+
+    console.log(distGraph);
+  }
 }
 
 module.exports = { generateStats, main, setDebug, tests };

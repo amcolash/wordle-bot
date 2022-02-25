@@ -7,6 +7,7 @@
     "wordle-bot": "src/cli.js"
   },
   "dependencies": {
+    "ervy": "^1.0.7",
     "firebase-admin": "^10.0.2",
     "node-fetch": "^2.6.7",
     "progress-stream": "^2.0.0",
